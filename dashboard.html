@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EduPrime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eduprime-styles.css">
+    <style>
+        nav, #mainNav { display: none !important; }
+        body { padding-top: 0; background: #f8f9fa; }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+  <div class="dashboard-sidebar">
+    <div class="dashboard-logo">EduPrime</div>
+    <div class="sidebar-menu">
+      <a href="#" class="menu-item active" onclick="showTab('admin')">Admin Dashboard</a>
+      <a href="#" class="menu-item" onclick="showTab('student')">Student Portal</a>
+      <a href="#" class="menu-item">All Courses</a>
+      <a href="#" class="menu-item">My Enrollments</a>
+      <a href="#" class="menu-item">Reports</a>
+    </div>
+    <div class="sidebar-footer">
+      <button onclick="window.location.href='index.html'" class="btn-ghost">← Back to Home</button>
+      <button onclick="logout()" class="btn-outline">Logout</button>
+    </div>
+  </div>
+
+  <div class="dashboard-main">
+    <!-- Admin Dashboard -->
+    <div id="adminTab" class="tab-content active">
+      <h1>Admin Dashboard</h1>
+      <p class="welcome-text">Good morning, Administrator</p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>Total Students</h3>
+          <h2>5,024</h2>
+        </div>
+        <div class="metric-card">
+          <h3>Active Course Enrollments</h3>
+          <h2>3,891</h2>
+        </div>
+        <div class="metric-card">
+          <h3>Courses Offered</h3>
+          <h2>24</h2>
+        </div>
+        <div class="metric-card">
+          <h3>Departments</h3>
+          <h2>12</h2>
+        </div>
+      </div>
+
+      <h3>Recent Course Enrollments</h3>
+      <table class="admin-table" id="recentEnrollTable"></table>
+    </div>
+
+    <!-- Student Portal -->
+    <div id="studentTab" class="tab-content">
+      <h1>Student Portal</h1>
+      <p class="welcome-text" id="studentWelcome">Welcome back, Juan Dela Cruz!</p>
+
+      <h3>My Current Courses</h3>
+      <div id="myCoursesList"></div>
+
+      <h3>My Schedule</h3>
+      <table class="schedule-table" id="studentScheduleTable"></table>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(tab + 'Tab').classList.add('active');
+}
+
+function logout() {
+  if (confirm("Logout from dashboard?")) {
+    window.location.href = "index.html";
+  }
+}
+
+// Sample Data Loader
+document.addEventListener('DOMContentLoaded', () => {
+  // Recent Enrollments
+  document.getElementById('recentEnrollTable').innerHTML = `
+    <thead>
+      <tr><th>Enrollment ID</th><th>Student</th><th>Course</th><th>Date</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ENR-2026001</td><td>Maria Santos</td><td>CS101</td><td>2026-05-08</td><td>Active</td></tr>
+      <tr><td>ENR-2026002</td><td>Jose Reyes</td><td>BUS201</td><td>2026-05-07</td><td>Pending</td></tr>
+    </tbody>
+  `;
+
+  // Student Courses
+  document.getElementById('myCoursesList').innerHTML = `
+    <div class="enrollment-card">CS101 - Introduction to Programming <span class="status active">Active</span></div>
+    <div class="enrollment-card">BUS201 - Principles of Management <span class="status active">Active</span></div>
+  `;
+});
+</script>
+</body>
+</html>

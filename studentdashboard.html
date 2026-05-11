@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduPrime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eduprime-styles.css">
+    <style>
+        body { background: #f8f9fa; padding: 0; margin: 0; }
+    </style>
+</head>
+<body>
+
+<div style="background:#0a3d2f;color:white;padding:20px 5%;display:flex;justify-content:space-between;">
+    <h2>EduPrime Student Portal</h2>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div style="padding:30px;">
+    <h1 id="studentGreeting">Welcome back, Juan Dela Cruz!</h1>
+    <p>Semester 1, 2025</p>
+
+    <h3>My Current Courses</h3>
+    <div id="myCourses" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:20px 0;">
+        <!-- Populated by JS -->
+    </div>
+
+    <h3>My Schedule</h3>
+    <table class="schedule-table" id="scheduleTable"></table>
+</div>
+
+<script>
+function logout() {
+    if(confirm("Logout?")) window.location.href = "index.html";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('myCourses').innerHTML = `
+        <div style="background:white;padding:20px;border-radius:12px;">
+            <h4>CS101 - Introduction to Programming</h4>
+            <p>Active • 3 Credits</p>
+        </div>
+        <div style="background:white;padding:20px;border-radius:12px;">
+            <h4>BUS201 - Principles of Management</h4>
+            <p>Active • 3 Credits</p>
+        </div>
+    `;
+
+    document.getElementById('scheduleTable').innerHTML = `
+        <thead><tr><th>Time</th><th>Course</th><th>Room</th></tr></thead>
+        <tbody>
+            <tr><td>7:30 AM</td><td>CS101</td><td>Lab 101</td></tr>
+            <tr><td>10:30 AM</td><td>BUS201</td><td>Room 204</td></tr>
+        </tbody>
+    `;
+});
+</script>
+</body>
+</html>
